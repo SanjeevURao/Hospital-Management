@@ -1,0 +1,89 @@
+<head>
+      <meta charset="UTF-8">
+      <title>Home</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<style>
+    h1 {
+        color:black;
+    }
+</style>
+
+
+</head>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">HMS</a>
+        </div>
+          <ul class="nav navbar-nav">
+          </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li><a href='http://127.0.0.1:8000/admin'><span class="glyphicon glyphicon-log-in"> Admin Login</span></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        </ul>
+      </div>
+    </nav>
+
+<div class="homeText" >
+     <h1 class="homeText">Hospital Management System</h1>
+</div>
+
+
+
+<div class="container">
+
+  <div class="row">
+        <div class="col-sm-12 col-md-2" >
+            <h1>Patient Login</h1>
+            <div class="panel panel-default" >
+                <div class="panel-body">
+
+                     <form class="login" method="POST" action="/login/">
+
+                          {% csrf_token %}
+
+                          {{form.as_p}}
+
+                          <li><input type="submit" class="logBut" value="Log in"/></li>
+                    </form>
+
+                <p>Forgot Password? <a href="#">click here </a> </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-2" style="padding-left:'20px'" >
+
+        </div>
+        <div class="col-sm-12 col-md-2" >
+            <h1>Doctor Login</h1>
+            <div class="panel panel-default" >
+                <div class="panel-body">
+
+                     <form class="login" method="POST" action="/login/">
+
+                          {% csrf_token %}
+
+                          {{form.as_p}}
+
+                          <li><input type="submit" class="logBut" value="Log in"/></li>
+                    </form>
+
+                <p>Forgot Password? <a href="#">click here </a> </p>
+                </div>
+            </div>
+        </div>
+  </div>
+</div>
+

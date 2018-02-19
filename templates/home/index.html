@@ -1,0 +1,24 @@
+{% extends 'home/base.html' %}
+{% load staticfiles %}
+{% block body %}
+<title>Home</title>
+
+    <p style="font-family: 'Lobster';font-size: 40px;">Welcome {{ request.user.username }}</p>
+    <h2><a href="{% url 'home:addappointment' %}">Add appointment</a></h2>
+
+    <div>
+        <p style="font-family: 'Lobster'; font-size: 40px;">Appointments</p>
+        <ul>
+
+        {% for c in appointments %}
+                <li>
+                    <p style="font-size:25px;">Doctor: {{ c.Doctor}} on {{ c.Date }}</p>
+                    <form action="{% url 'home:deleteappointment' c.id %}" method="post">{% csrf_token %}
+                        <button type="submit" class="btn btn-danger" value="Delete"> Delete </button>
+                    </form>
+                </li>
+        {% endfor %}
+		</ul>
+    </div>
+
+{% endblock %}
