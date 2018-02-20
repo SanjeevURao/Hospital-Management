@@ -3,7 +3,7 @@ from django.shortcuts import render , redirect
 from django.contrib.auth import authenticate , login
 from django.views.generic import View
 from .models import Appointment
-from django.views.generic.edit import CreateView , UpdateView , DeleteView
+from django.views.generic.edit import UpdateView , DeleteView
 from .forms import UserForm
 from django.contrib.auth.decorators import login_required
 from .forms import AppointmentForm
@@ -80,7 +80,6 @@ def AddAppointment(request):
             }
     return render(request, 'home/appointment_form.html', context)
 
-
 class AppointmentDelete(DeleteView):
     model = Appointment
     success_url = reverse_lazy('home:index')
@@ -88,12 +87,4 @@ class AppointmentDelete(DeleteView):
 class AppointmentUpdate(UpdateView):
     model = Appointment
     fields = ['Name']
-
-
-
-
-
-
-
-
 

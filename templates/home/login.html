@@ -28,8 +28,7 @@
           <ul class="nav navbar-nav">
           </ul>
         <ul class="nav navbar-nav navbar-left">
-            <li><a href='http://127.0.0.1:8000/admin'><span class="glyphicon glyphicon-log-in"> Admin Login</span></a></li>
-        </ul>
+            <li><a href='http://127.0.0.1:8000/admin'><span class="glyphicon glyphicon-log-in"> Admin Login</span></a></li></ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         </ul>
@@ -64,25 +63,6 @@
             </div>
         </div>
         <div class="col-sm-12 col-md-2" style="padding-left:'20px'" >
-
-        </div>
-        <div class="col-sm-12 col-md-2" >
-            <h1>Doctor Login</h1>
-            <div class="panel panel-default" >
-                <div class="panel-body">
-
-                     <form class="login" method="POST" action="/login/">
-
-                          {% csrf_token %}
-
-                          {{form.as_p}}
-
-                          <li><input type="submit" class="logBut" value="Log in"/></li>
-                    </form>
-
-                <p>Forgot Password? <a href="#">click here </a> </p>
-                </div>
-            </div>
         </div>
   </div>
 </div>

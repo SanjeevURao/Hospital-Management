@@ -10,16 +10,35 @@ class Doctor(models.Model):
     Email = models.CharField(max_length=100)
     Speciality = models.CharField(max_length=100)
 
+
     def __str__(self):
         return self.Name
+
+
 
 class Appointment(models.Model):
     user = models.ForeignKey(User, null=True)
     Doctor = models.ForeignKey(Doctor)
     Date = models.DateField(("Date"), default=datetime.date.today)
+    Pending= 'PD'
+    Approved= 'AP'
+    Rejected = 'RJ'
+    STATUS = (
+        (Pending, 'Pending'),
+        (Approved, 'Approved'),
+        (Rejected, 'rejected'),
+    )
+
+    status = models.CharField(
+        max_length=2,
+        choices=STATUS,
+        default=Pending,
+    )
+
 
     def __str__(self):
         return str(self.user)
 
     def get_absolute_url(self):
         return reverse('home:index')
+

@@ -15,7 +15,6 @@ class UserForm(forms.ModelForm):
         fields = ['username' , 'email' , 'password']
 
 
-
 class AppointmentForm(forms.ModelForm):
 
     #this class is info abt the form
@@ -33,3 +32,5 @@ class Login(forms.ModelForm):
         model = User
 
         fields = ['username', 'password']
+
+
