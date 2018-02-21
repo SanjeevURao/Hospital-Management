@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 
 from django import forms
-from .models import  Appointment
+from .models import  Appointment , Doctor , Person
 
 
 class UserForm(forms.ModelForm):
@@ -11,9 +11,12 @@ class UserForm(forms.ModelForm):
     #this class is info abt the form
     class Meta:
         model = User
-
         fields = ['username' , 'email' , 'password']
 
+class PersonForm(forms.ModelForm):
+    class Meta:
+        model = Person
+        fields = ('bio' , )
 
 class AppointmentForm(forms.ModelForm):
 
@@ -30,7 +33,6 @@ class Login(forms.ModelForm):
     #this class is info abt the form
     class Meta:
         model = User
-
         fields = ['username', 'password']
 
 
