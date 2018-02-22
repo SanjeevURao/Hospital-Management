@@ -17,7 +17,7 @@ class PersonForm(forms.ModelForm):
 
     class Meta:
         model = Person
-        fields = ('is_doctor', 'user')
+        fields = ('is_doctor',)
 
 
 class PatientForm(forms.ModelForm):
@@ -29,14 +29,14 @@ class PatientForm(forms.ModelForm):
 class DoctorForm(forms.ModelForm):
     class Meta:
         model = Doctor
-        fields = ['person', 'Speciality']
+        fields = ('Speciality',)
 
 
 class AppointmentForm(forms.ModelForm):
 
     class Meta:
         model = Appointment
-        fields = ['Doctor' , 'Date']
+        fields = ['Doctor', 'Date']
 
 
 class Login(forms.ModelForm):
