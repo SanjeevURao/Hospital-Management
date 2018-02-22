@@ -15,12 +15,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'home:login_success'
 
 # Application definition
 
 INSTALLED_APPS = [
-    'home.apps.HomeConfig',
+    'home',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

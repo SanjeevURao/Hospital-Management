@@ -1,38 +1,48 @@
 from django.db import models
 from django.core.urlresolvers import reverse
-from django.contrib.auth.models import  User
+from django.contrib.auth.models import User
 import datetime
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+
+
+class UserProxy(User):
+    class Meta:
+        proxy = True
+
+
+
 
 class Person(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE , primary_key=True)
-    bio = models.CharField(max_length=500, blank=True , default='')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    is_doctor = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
 
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Person.objects.create(user=instance)
 
+class PersonProxy(Person):
+    class Meta:
+        proxy = True
 
 class Doctor(models.Model):
-    Name = models.CharField(max_length=100)
-    Phone = models.CharField(max_length=15)
-    Email = models.CharField(max_length=100)
-    Speciality = models.CharField(max_length=100)
-
+    person = models.OneToOneField(Person, on_delete=models.CASCADE)
+    Speciality = models.CharField(max_length=100 , default=None)
 
     def __str__(self):
-        return self.Name
+        return self.person.user.username
 
+
+class Patient(models.Model):
+    person = models.OneToOneField(Person, on_delete=models.CASCADE)
+    location = models.CharField(max_length=500 , blank=True , default='')
+    bio = models.CharField(max_length=500, blank=True)
+
+    def __str__(self):
+        return self.person.user.username
 
 
 class Appointment(models.Model):
     user = models.ForeignKey(User, null=True)
-    Doctor = models.ForeignKey(Doctor)
+    Doctor = models.ForeignKey(Doctor , default=None)
     Date = models.DateField(("Date"), default=datetime.date.today)
     Pending= 'PD'
     Approved= 'AP'
@@ -55,4 +65,3 @@ class Appointment(models.Model):
 
     def get_absolute_url(self):
         return reverse('home:index')
-

@@ -1,11 +1,11 @@
-from django.conf.urls import url , include
+from django.conf.urls import url
 from . import views
-from django.contrib import admin
 from django.contrib.auth.views import login , logout
 
 urlpatterns = [
     url(r'^$', views.index , name='index'),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'login_success/$', views.login_success, name='login_success'),
+    url(r'^doctor_home$', views.doctor_home, name='doctor_home'),
     url(r'^register$' , views.UserFormView.as_view() , name='register'),
     url(r'^login/$',login, {'template_name': 'home/login.html'} ,name='login'),
     url(r'^appointment/add$', views.AddAppointment, name='addappointment'),
