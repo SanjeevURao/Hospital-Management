@@ -2,13 +2,15 @@ from django.conf.urls import url
 from . import views
 from django.contrib.auth.views import login , logout
 
+
 urlpatterns = [
-    #url(r'^$', views.index , name='index'),
+    url(r'^$', views.index , name='index'),
     url(r'login_success/$', views.login_success, name='login_success'),
+    url(r'test/$', views.test, name='test'),
+    url(r'doctor_list/$', views.doctor_list, name='doctor_list'),
     url(r'^doctor_home$', views.doctor_home, name='doctor_home'),
-    url(r'^patient_home$', views.patient_home, name='patient_home'),
     url(r'^admin_home$', views.admin_home, name='admin_home'),
-    url(r'^register$' , views.UserFormView.as_view() , name='register'),
+    url(r'^register$', views.UserFormView.as_view() , name='register'),
     url(r'^doctor_register$', views.DoctorFormView.as_view(), name='doctor_register'),
     url(r'^login/$',login, {'template_name': 'home/login.html'} ,name='login'),
     url(r'^appointment/add$', views.AddAppointment, name='addappointment'),
@@ -16,6 +18,3 @@ urlpatterns = [
     url(r'^appointment/(?P<pk>[0-9]+)/$', views.AppointmentUpdate.as_view(), name='updateappointment'),
     url(r'^logout/$',logout, {'next_page': '/index/login'}, name='logout'),
 ]
-
-
-

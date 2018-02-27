@@ -48,12 +48,11 @@ body {
 }
 </style>
 <body>
-
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <a href="{% url 'home:addappointment' %}">Appointments</a>
-      <a href="#">Doctors</a>
-      <a href="#">Profile</a>
+      <a href="{% url 'home:doctor_list' %}">Doctors</a>
+
     </div>
 
     <p style="font-family: 'Lobster';font-size: 40px;">Welcome {{ request.user.username }}</p>
@@ -72,9 +71,9 @@ body {
     <div class="container-fluid text-center">
       <div class="row content">
         <div class="container">
-            {% if not appointments%}
-                <h2 align="left">No Appointments</h2>
-            {% else %}
+            <!--{% if not appointments%}-->
+                <!--<h2 align="left">No Appointments</h2>-->
+            <!--{% else %}-->
                 <h2 align="left">Your Appointments</h2>
                 <table class="table table-hover">
                     <thead>
@@ -82,6 +81,7 @@ body {
                         <th>Doctor</th>
                         <th>Date</th>
                         <th>Status</th>
+                        <th>Message</th>
                       </tr>
                     </thead>
                 <tbody>
@@ -90,6 +90,7 @@ body {
                     <td>{{ c.Doctor }}</td>
                     <td>{{ c.Date }}</td>
                     <td>{{ c.status }}</td>
+                    <td>{{ c.message }}</td>
                     <td>
                       <form action="{% url 'home:deleteappointment' c.id %}" method="post">{% csrf_token %}
                         <button type="submit" class="btn btn-danger" value="Delete"> Delete </button>
@@ -98,7 +99,7 @@ body {
                   </tr>
                 {% endfor %}
                 </tbody>
-            {% endif %}
+            <!--{% endif %}-->
           </table>
         </div>
       </div>

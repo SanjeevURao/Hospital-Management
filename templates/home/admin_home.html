@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<a>
-<a href="{% url 'doctor_register' %}" > Add doctor </a>
+{% extends 'home/base.html' %}
+{% load staticfiles %}
+{% block body %}
+<title>Admin Home</title>
+
+<body>
+
+    <p style="font-family: 'Lobster';font-size: 40px;">Welcome {{ request.user.username }}</p>
+    <h2><a href="{% url 'doctor_register' %}" > Add doctor </a></h2>
+    <h2><a href='http://127.0.0.1:8000/admin' > Manage Database </a></h2>
+
 </body>
-</html>
+
+{% endblock %}

@@ -4,24 +4,14 @@ from django.contrib.auth.models import User
 import datetime
 
 
-class UserProxy(User):
-    class Meta:
-        proxy = True
-
-
-
 
 class Person(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    is_doctor = models.BooleanField(default=False)
+    is_doctor = models.BooleanField(default=True)
 
     def __str__(self):
         return self.user.username
 
-
-class PersonProxy(Person):
-    class Meta:
-        proxy = True
 
 class Doctor(models.Model):
     person = models.OneToOneField(Person, on_delete=models.CASCADE)
@@ -59,6 +49,7 @@ class Appointment(models.Model):
         default=Pending,
     )
 
+    message = models.CharField(max_length=1000 , default="Pending Approval")
 
     def __str__(self):
         return str(self.user)
