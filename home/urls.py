@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from . import views
 from django.contrib.auth.views import login , logout
+from .views import UserUpdate , Success
 
 
 urlpatterns = [
@@ -16,5 +17,8 @@ urlpatterns = [
     url(r'^appointment/add$', views.AddAppointment, name='addappointment'),
     url(r'^appointment/(?P<pk>[0-9]+)/delete/$', views.AppointmentDelete.as_view(), name='deleteappointment'),
     url(r'^appointment/(?P<pk>[0-9]+)/$', views.AppointmentUpdate.as_view(), name='updateappointment'),
+    # url(r'^user/(?P<pk>[0-9]+)/$', views.UserUpdate.as_view(), name='userupdate'),
+    url(r'^profile/edit/$',UserUpdate.as_view(),name='user-update'),
+    url(r'^profile/edit/success$', Success, name='success'),
     url(r'^logout/$',logout, {'next_page': '/index/login'}, name='logout'),
 ]

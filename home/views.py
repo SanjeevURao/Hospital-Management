@@ -3,12 +3,13 @@ from django.contrib.auth import authenticate , login , logout
 from django.views.generic import View
 from .models import Appointment, Person , Doctor , User , Patient
 from django.views.generic.edit import UpdateView , DeleteView
-from .forms import UserForm , PatientForm , DoctorForm , PersonForm
+from .forms import UserForm , PatientForm , DoctorForm , PersonForm , UpdateForm
 from django.contrib.auth.decorators import login_required
 from .forms import AppointmentForm
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
-
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 
 
 def test(request):
@@ -186,5 +187,22 @@ class AppointmentUpdate(UpdateView):
     fields = ['Name']
 
 
+class UserUpdate(UpdateView):
+    context_object_name = 'form'
+    form_class = UpdateForm
+    template_name = 'home/userupdate.html'
+    success_url = 'success'
 
+    # get object
+    def get_object(self, queryset=None):
+        return self.request.user
 
+    # override form_valid method
+    def form_valid(self, form):
+        # save cleaned post data
+        clean = form.cleaned_data
+        self.object = form.save(clean)
+        return super(UserUpdate, self).form_valid(form)
+
+def Success(request):
+    return render(request, 'home/success.html')

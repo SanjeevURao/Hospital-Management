@@ -52,7 +52,7 @@ body {
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <a href="{% url 'home:addappointment' %}">Appointments</a>
       <a href="{% url 'home:doctor_list' %}">Doctors</a>
-
+      <a href="{% url 'home:user-update' %}">Edit Profile</a>
     </div>
 
     <p style="font-family: 'Lobster';font-size: 40px;">Welcome {{ request.user.username }}</p>

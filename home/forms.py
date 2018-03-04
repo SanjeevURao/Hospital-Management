@@ -46,3 +46,12 @@ class Login(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+
+
+class UpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('username',)
+
+
