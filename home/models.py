@@ -7,7 +7,7 @@ import datetime
 
 class Person(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    is_doctor = models.BooleanField(default=True)
+    is_doctor = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

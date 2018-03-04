@@ -8,8 +8,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import AppointmentForm
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
-from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
 
 
 def test(request):
@@ -148,11 +146,11 @@ class DoctorFormView(View):
 
 @login_required(login_url='login')
 def login_success(request):
-    person = Person(user=request.user)
+    person=Person.objects.get(user=request.user)
     print(person.is_doctor)
     if request.user.is_superuser:
         return redirect("home:admin_home")
-    if person.is_doctor is True:
+    if person.is_doctor:
         return redirect("home:doctor_home")
     else:
         return redirect("home:index")
