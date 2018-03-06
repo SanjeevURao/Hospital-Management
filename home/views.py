@@ -30,7 +30,11 @@ def doctor_list(request):
 
 @login_required(login_url='login')
 def doctor_home(request):
-    return render(request, 'home/doctor_home.html')
+    user = request.user
+    person = Person.objects.get(user=user)
+    doctor = Doctor.objects.get(person=person)
+    appointments = Appointment.objects.filter(Doctor=doctor)
+    return render(request, 'home/doctor_home.html', {'appointments': appointments})
 
 
 @login_required(login_url='login')
@@ -186,6 +190,7 @@ class AppointmentUpdate(UpdateView):
 
 
 class UserUpdate(UpdateView):
+
     context_object_name = 'form'
     form_class = UpdateForm
     template_name = 'home/userupdate.html'
@@ -204,3 +209,8 @@ class UserUpdate(UpdateView):
 
 def Success(request):
     return render(request, 'home/success.html')
+
+
+def all_appointments(request):
+    appointments = Appointment.objects.all()
+    return render(request, 'home/all_appointments.html', {'appointments': appointments})

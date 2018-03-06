@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'doctor_list/$', views.doctor_list, name='doctor_list'),
     url(r'^doctor_home$', views.doctor_home, name='doctor_home'),
     url(r'^admin_home$', views.admin_home, name='admin_home'),
+    url(r'^all_appointments$', views.all_appointments, name='all_appointments'),
     url(r'^register$', views.UserFormView.as_view() , name='register'),
     url(r'^doctor_register$', views.DoctorFormView.as_view(), name='doctor_register'),
     url(r'^login/$',login, {'template_name': 'home/login.html'} ,name='login'),

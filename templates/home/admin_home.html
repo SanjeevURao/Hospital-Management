@@ -1,14 +1,34 @@
-{% extends 'home/base.html' %}
-{% load staticfiles %}
-{% block body %}
-<title>Admin Home</title>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'home/welcome.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
 <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">HMS</a>
+          <a class="navbar-brand" href="{% url 'home:admin_home' %}">Home</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+        </ul>
+      </div>
+    </nav>
 
     <p style="font-family: 'Lobster';font-size: 40px;">Welcome {{ request.user.username }}</p>
     <h2><a href="{% url 'doctor_register' %}" > Add doctor </a></h2>
     <h2><a href='http://127.0.0.1:8000/admin' > Manage Database </a></h2>
+    <h2><a href="{% url 'all_appointments' %}" > See Appointments</a></h2>
 
 </body>
-
-{% endblock %}
