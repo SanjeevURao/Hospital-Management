@@ -150,15 +150,14 @@ class DoctorFormView(View):
 
 @login_required(login_url='login')
 def login_success(request):
-    person=Person.objects.get(user=request.user)
-    print(person.is_doctor)
     if request.user.is_superuser:
         return redirect("home:admin_home")
+    person=Person.objects.get(user=request.user)
+    print(person.is_doctor)
     if person.is_doctor:
         return redirect("home:doctor_home")
     else:
         return redirect("home:index")
-
 
 
 @login_required(login_url='login')
