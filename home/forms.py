@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 
 from django import forms
-from .models import  Appointment , Patient , Person, Doctor
+from .models import  Appointment , Patient , Person, Doctor, Receptionist
 
 
 class UserForm(forms.ModelForm):
@@ -17,19 +17,25 @@ class PersonForm(forms.ModelForm):
 
     class Meta:
         model = Person
-        fields = ('is_doctor',)
+        fields = ('type',)
 
 
 class PatientForm(forms.ModelForm):
     class Meta:
         model = Patient
-        fields = ('location', 'bio')
+        fields = ('Address', 'Email', 'Phone', 'gender', 'location', 'bio')
 
 
 class DoctorForm(forms.ModelForm):
     class Meta:
         model = Doctor
-        fields = ('Speciality',)
+        fields = ('Address', 'Email', 'Phone', 'gender', 'Speciality',)
+
+
+class ReceptionistForm(forms.ModelForm):
+    class Meta:
+        model = Receptionist
+        fields = ('Address', 'Email', 'Phone', 'gender',)
 
 
 class AppointmentForm(forms.ModelForm):
