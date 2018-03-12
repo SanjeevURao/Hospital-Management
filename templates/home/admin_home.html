@@ -12,7 +12,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
-<body>
+
+
+<body background="url('images/admin.jpg')">
 
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
@@ -26,10 +28,10 @@
       </div>
     </nav>
 
-    <p style="font-family: 'Lobster';font-size: 40px;">Welcome {{ request.user.username }}</p>
-    <h2><a href="{% url 'doctor_register' %}" > Add doctor </a></h2>
-    <h2><a href="{% url 'receptionist_register' %}" > Add Receptionist </a></h2>
-    <h2><a href='http://127.0.0.1:8000/admin' > Manage Database </a></h2>
-    <h2><a href="{% url 'all_appointments' %}" > See Appointments</a></h2>
+    <p align="center" style="font-family: 'Lobster';font-size: 50px;">Welcome {{ request.user.username }}</p>
+    <h2 align="center"><a href="{% url 'doctor_register' %}" > Add doctor </a></h2>
+    <h2 align="center"><a href="{% url 'receptionist_register' %}" > Add Receptionist </a></h2>
+    <h2 align="center"><a href='http://127.0.0.1:8000/admin' > Manage Database </a></h2>
+    <h2 align="center"><a href="{% url 'all_appointments' %}" > See Appointments</a></h2>
 
 </body>

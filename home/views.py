@@ -36,7 +36,6 @@ def doctor_home(request):
     return render(request, 'home/doctor_home.html', {'appointments': appointments})
 
 
-
 @login_required(login_url='login')
 def receptionist_home(request):
     user = request.user
@@ -46,10 +45,10 @@ def receptionist_home(request):
     return render(request, 'home/receptionist_home.html', {'appointments': appointments})
 
 
-
 @login_required(login_url='login')
 def admin_home(request):
     return render(request, 'home/admin_home.html')
+
 
 
 class UserFormView(View):
@@ -245,19 +244,22 @@ class AppointmentDelete(DeleteView):
 
 class AppointmentUpdate(UpdateView):
     model = Appointment
-    fields = ['Name']
+    fields = ['user', 'Doctor', 'Date', 'status', 'message']
+    success_url = reverse_lazy('home:receptionist_home')
 
-doctor_home
+
+
 class UserUpdate(UpdateView):
 
     context_object_name = 'form'
-    form_class = UpdateForm
+    form_class = PatientForm
     template_name = 'home/userupdate.html'
     success_url = 'success'
 
     # get object
     def get_object(self, queryset=None):
-        return self.request.user
+        person = Person.objects.get(user=self.request.user)
+        return Patient.objects.get(person=person)
 
     # override form_valid method
     def form_valid(self, form):

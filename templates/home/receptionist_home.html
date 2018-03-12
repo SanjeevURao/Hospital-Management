@@ -17,7 +17,7 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">HMS</a>
-          <a class="navbar-brand" href="{% url 'home:doctor_home' %}">Home</a>
+          <a class="navbar-brand" href="{% url 'home:receptionist_home' %}">Home</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
@@ -30,9 +30,6 @@
      <div class="container-fluid text-center">
       <div class="row content">
         <div class="container">
-            <!--{% if not appointments%}-->
-                <!--<h2 align="left">No Appointments</h2>-->
-            <!--{% else %}-->
                 <h2 align="left">All Appointments</h2>
                 <table class="table table-hover">
                     <thead>
@@ -53,14 +50,13 @@
                     <td>{{ c.status }}</td>
                     <td>{{ c.message }}</td>
                     <td>
-                      <!--<form action="{% url 'home:deleteappointment' c.id %}" method="post">{% csrf_token %}-->
-                        <!--<button type="submit" class="btn btn-danger" value="Delete"> Delete </button>-->
-                      <!--</form>-->
+                      <form action="{% url 'home:updateappointment' c.id %}" method="get">{% csrf_token %}
+                        <button type="Submit" class="btn btn-submit" value="Update" > Update Status</button>
+                      </form>
                     </td>
                   </tr>
                 {% endfor %}
                 </tbody>
-            <!--{% endif %}-->
           </table>
         </div>
       </div>
