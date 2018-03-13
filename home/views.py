@@ -160,7 +160,7 @@ class ReceptionistFormView(View):
     user_form_class = UserForm
     receptionist_form_class = ReceptionistForm
     person_form_class = PersonForm
-    template_name = 'home/doctor_registration.html'
+    template_name = 'home/receptionist_registration.html'
 
     #show blank forqm
 
