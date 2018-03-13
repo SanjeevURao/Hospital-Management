@@ -141,7 +141,8 @@ class DoctorFormView(View):
             person.save()
 
 
-            person = Person(user=user)
+            person = Person.objects.get(user=user)
+            person.type=1
             person.save()
 
 
@@ -193,7 +194,8 @@ class ReceptionistFormView(View):
             person.save()
 
 
-            person = Person(user=user)
+            person = Person.objects.get(user=user)
+            person.type=2
             person.save()
 
 
