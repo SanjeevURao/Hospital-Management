@@ -6,7 +6,7 @@ from django.views.generic.edit import UpdateView , DeleteView
 from .forms import UserForm , PatientForm , DoctorForm , PersonForm , UpdateForm, ReceptionistForm
 from django.contrib.auth.decorators import login_required
 from .forms import AppointmentForm
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.shortcuts import redirect
 
 
@@ -21,13 +21,13 @@ def index(request):
     return render(request, 'home/index.html', {'appointments': appointments , 'Users':users})
 
 
-@login_required(login_url='login')
+#@login_required(login_url='login')
 def doctor_list(request):
     doctors = Doctor.objects.all()
     return render(request, 'home/doctor_list.html', {'doctors': doctors})
 
 
-@login_required(login_url='login')
+#@login_required(login_url='login')
 def doctor_home(request):
     user = request.user
     person = Person.objects.get(user=user)
@@ -36,7 +36,7 @@ def doctor_home(request):
     return render(request, 'home/doctor_home.html', {'appointments': appointments})
 
 
-@login_required(login_url='login')
+#@login_required(login_url='login')
 def receptionist_home(request):
     user = request.user
     person = Person.objects.get(user=user)
@@ -45,7 +45,7 @@ def receptionist_home(request):
     return render(request, 'home/receptionist_home.html', {'appointments': appointments})
 
 
-@login_required(login_url='login')
+#@login_required(login_url='login')
 def admin_home(request):
     return render(request, 'home/admin_home.html')
 
@@ -208,7 +208,7 @@ class ReceptionistFormView(View):
         return render(request , self.template_name , {'u_form' : u_form , 'd_form' : d_form})
 
 
-@login_required(login_url='login')
+#@login_required(login_url='login')
 def login_success(request):
     if request.user.is_superuser:
         return redirect("home:admin_home")
@@ -221,9 +221,9 @@ def login_success(request):
         return redirect("home:index")
 
 
-@login_required(login_url='login')
+#@login_required(login_url='login')
 def AddAppointment(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return render(request, 'index/login.html')
     else:
         form = AppointmentForm(request.POST or None)

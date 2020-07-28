@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth.models import User
 import datetime
 
@@ -11,14 +11,6 @@ class Person(models.Model):
 
     def __str__(self):
         return self.user.username
-
-
-class Doctor(models.Model):
-    person = models.OneToOneField(Person, on_delete=models.CASCADE)
-    Speciality = models.CharField(max_length=100 , default=None)
-
-    def __str__(self):
-        return self.person.user.username
 
 class Doctor(models.Model):
     person = models.OneToOneField(Person, on_delete=models.CASCADE)
@@ -43,7 +35,6 @@ class Receptionist(models.Model):
     def __str__(self):
         return self.person.user.username
 
-
 class Patient(models.Model):
     person = models.OneToOneField(Person, on_delete=models.CASCADE)
     location = models.CharField(max_length=500 , blank=True , default='')
@@ -58,8 +49,8 @@ class Patient(models.Model):
 
 
 class Appointment(models.Model):
-    user = models.ForeignKey(User, null=True)
-    Doctor = models.ForeignKey(Doctor , default=None)
+    user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    Doctor = models.ForeignKey(Doctor , on_delete=models.CASCADE,default=None)
     Date = models.DateField(("Date"), default=datetime.date.today)
     Pending= 'PD'
     Approved= 'AP'

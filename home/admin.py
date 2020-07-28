@@ -6,5 +6,3 @@ admin.site.register(Appointment)
 admin.site.register(Person)
 admin.site.register(Patient)
 admin.site.register(Receptionist)
-
-
